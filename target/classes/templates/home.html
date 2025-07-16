@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduBarter</title>
+  <!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>  <!-- AOS animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-light: #1e293b;
+      --text: #f1f5f9;
+      --accent: #38bdf8;
+    }
+    .hero-bg {
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(30, 41, 59, 0.8),
+          rgba(15, 23, 42, 0.9)
+        ),
+        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid var(--accent);
+      white-space: nowrap;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+      display: inline-block;
+      width: fit-content;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .float-up {
+      animation: floatUp 1s ease-out forwards;
+    }
+    /* Scroll progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px; /* slightly thicker */
+      background-color: var(--accent);
+      width: 0;
+      z-index: 10000;
+      transition: width 0.25s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-[#0f172a] text-gray-900 dark:text-gray-100 transition-colors duration-500">
+  <!-- Scroll progress bar -->
+  <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Page scroll progress"></div>
+
+  <!-- Navbar -->
+  <nav
+  id="navbar"
+  class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow sticky top-0 z-50 transition-all duration-300"
+>
+  <a th:href="@{/home}" class="text-xl font-bold text-blue-700 dark:text-blue-400" aria-label="EduBarter home">
+    EduBarter
+  </a>
+
+  <div id="nav-links" class="hidden md:flex gap-4 items-center">
+    <a th:href="@{/home}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Home</a>
+    <a th:href="@{/about}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">About</a>
+    <a th:href="@{/services}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Services</a>
+    <a th:href="@{/contact}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Contact</a>
+    <a th:href="@{/login}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Login</a>
+    <a th:href="@{/register}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Register</a>
+  </div>
+
+  <button
+    id="menu-btn"
+    class="md:hidden text-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="nav-links"
+  >
+    ☰
+  </button>
+</nav>
+
+
+  <!-- Hero -->
+  <section class="hero-bg">
+    <section
+      id="home"
+      class="py-24 text-center text-white max-w-4xl mx-auto px-4"
+      data-aos="fade-down"
+    >
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 typewriter" role="heading" aria-level="1">
+        Learn. Teach. Grow – Together.
+      </h2>
+      <p
+        class="text-lg md:text-xl text-gray-200 mb-6"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        A collaborative platform where students can exchange knowledge,
+        schedule sessions, and develop skills together.
+      </p>
+      <a
+        href="/register.html"
+        class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded shadow-lg hover:scale-105 hover:shadow-blue-300 active:scale-95 transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400"
+        >Join Now</a
+      >
+    </section>
+
+    <!-- Features -->
+    <section
+      id="skills"
+      class="bg-gray-100 dark:bg-gray-800 py-20"
+      data-aos="fade-up"
+    >
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow float-up hover:-translate-y-1 hover:shadow-xl transition duration-300"
+            tabindex="0"
+            aria-label="User Roles feature"
+          >
+            <div class="text-4xl mb-2" aria-hidden="true">✅</div>
+            <h3 class="font-bold mt-3 text-xl">User Roles</h3>
+            <p class="text-gray-700 dark:text-gray-300 mt-2">
+              Sign up as a Learner, Teacher, or both and start sharing or
+              receiving knowledge right away.
+            </p>
+          </article>
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow float-up hover:-translate-y-1 hover:shadow-xl transition duration-300"
+            tabindex="0"
+            aria-label="Skill Cards feature"
+          >
+            <div class="text-4xl mb-2" aria-hidden="true">📄</div>
+            <h3 class="font-bold mt-3 text-xl">Skill Cards</h3>
+            <p class="text-gray-700 dark:text-gray-300 mt-2">
+              Post what you can teach or what you’re looking to learn. Discover
+              others with shared interests.
+            </p>
+          </article>
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow float-up hover:-translate-y-1 hover:shadow-xl transition duration-300"
+            tabindex="0"
+            aria-label="Matching System feature"
+          >
+            <div class="text-4xl mb-2" aria-hidden="true">👥</div>
+            <h3 class="font-bold mt-3 text-xl">Matching System</h3>
+            <p class="text-gray-700 dark:text-gray-300 mt-2">
+              Match with peers based on skill, timing, location, and learning
+              goals using smart filters.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section
+      id="matching"
+      class="bg-gray-100 dark:bg-gray-900 py-20"
+      data-aos="fade-up"
+    >
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4" role="heading" aria-level="2">How It Works</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-10">
+          A simple 3‑step process to start your peer‑learning journey
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow hover:shadow-lg transition focus-within:ring-2 focus-within:ring-blue-400"
+            tabindex="0"
+            aria-label="Create a Profile step"
+          >
+            <h3 class="font-semibold text-lg">1️⃣ Create a Profile</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">
+              Choose your role, set your skills, and describe what you're
+              passionate about.
+            </p>
+          </article>
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow hover:shadow-lg transition focus-within:ring-2 focus-within:ring-blue-400"
+            tabindex="0"
+            aria-label="Find a Match step"
+          >
+            <h3 class="font-semibold text-lg">2️⃣ Find a Match</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">
+              Browse or get suggestions of people who fit your learning or
+              teaching needs.
+            </p>
+          </article>
+          <article
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow hover:shadow-lg transition focus-within:ring-2 focus-within:ring-blue-400"
+            tabindex="0"
+            aria-label="Book and Learn step"
+          >
+            <h3 class="font-semibold text-lg">3️⃣ Book and Learn</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">
+              Schedule a session, connect via chat, and grow your skills
+              collaboratively.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Testimonials -->
+  <section
+    id="feedback"
+    class="bg-gradient-to-r from-blue-900 to-teal-900 py-20"
+    data-aos="fade-in"
+  >
+    <div class="max-w-5xl mx-auto px-4 text-center text-white">
+      <h2 class="text-3xl font-bold mb-8" role="heading" aria-level="2">What Students Are Saying</h2>
+      <div id="testimonial-container" class="relative overflow-hidden" aria-live="polite" aria-atomic="true">
+        <div
+          id="testimonial-track"
+          class="flex transition-transform duration-700"
+          aria-label="Testimonials slider"
+        >
+          <blockquote
+            class="testimonial-card bg-gray-800 p-8 rounded shadow mx-2 min-w-full md:min-w-1/2 transition transform hover:scale-105 hover:shadow-xl"
+            tabindex="0"
+          >
+            <p class="italic text-gray-200">
+              "I found someone to teach me Python in just 30 minutes of
+              signing up. This platform is a game‑changer!"
+            </p>
+            <footer class="mt-4 font-semibold">– Priya, B.Tech Student</footer>
+          </blockquote>
+          <blockquote
+            class="testimonial-card bg-gray-800 p-8 rounded shadow mx-2 min-w-full md:min-w-1/2 transition transform hover:scale-105 hover:shadow-xl"
+            tabindex="0"
+          >
+            <p class="italic text-gray-200">
+              "I love helping others with design skills and now I’ve even
+              added teaching to my resume!"
+            </p>
+            <footer class="mt-4 font-semibold">– Rahul, UI/UX Intern</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer
+    id="community"
+    class="bg-gray-900 text-center py-8 text-gray-400 text-sm"
+    data-aos="fade-up"
+    data-aos-delay="400"
+  >
+    &copy; 2025 Peer Learning Platform. All rights reserved.
+  </footer>
+
+  <!-- Toggle Theme Button -->
+  <button
+    onclick="toggleDark()"
+    class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50 focus:outline-none focus:ring-4 focus:ring-blue-500"
+    aria-label="Toggle dark mode"
+  >
+    Toggle Dark
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progress-bar');
+    const html = document.documentElement;
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('hidden');
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true' || false;
+      menuBtn.setAttribute('aria-expanded', !expanded);
+    });
+
+    window.addEventListener('scroll', () => {
+      // Navbar shrink on scroll
+      if (window.scrollY > 20) {
+        navbar.classList.add('py-2', 'shadow-md');
+        navbar.classList.remove('py-4');
+      } else {
+        navbar.classList.remove('py-2', 'shadow-md');
+        navbar.classList.add('py-4');
+      }
+      // Scroll progress bar update
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = `${progress}%`;
+      progressBar.setAttribute('aria-valuenow', progress.toFixed(0));
+    });
+
+    // Testimonial slider
+    const track = document.getElementById('testimonial-track');
+    let offset = 0;
+    const speed = 0.2;
+    function animateSlider() {
+      offset += speed;
+      if (offset >= track.scrollWidth / 2) offset = 0;
+      track.style.transform = `translateX(-${offset}px)`;
+      requestAnimationFrame(animateSlider);
+    }
+    animateSlider();
+
+    // Dark mode logic with smooth transitions
+    function setTheme(mode) {
+      if (mode === 'dark') {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    function toggleDark() {
+      const isDark = html.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    }
+
+    // Load stored theme or system preference on page load
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>Services | EduBarter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind (CDN for quick demo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS scroll animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    /* Re‑use the site‑wide dark‑mode palette */
+    :root {
+      --bg: #0f172a;
+      --bg-light: #1e293b;
+      --text: #f1f5f9;
+      --accent: #38bdf8;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-[var(--bg)] text-gray-900 dark:text-[var(--text)]">
+
+  <!-- Scroll progress bar -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-blue-600 z-[100]"></div>
+
+  <!-- Navbar -->
+   <nav
+  id="navbar"
+  class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow sticky top-0 z-50 transition-all duration-300"
+>
+  <a th:href="@{/home}" class="text-xl font-bold text-blue-700 dark:text-blue-400" aria-label="EduBarter home">
+    EduBarter
+  </a>
+
+  <div id="nav-links" class="hidden md:flex gap-4 items-center">
+    <a th:href="@{/home}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Home</a>
+    <a th:href="@{/about}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">About</a>
+    <a th:href="@{/services}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Services</a>
+    <a th:href="@{/contact}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Contact</a>
+    <a th:href="@{/login}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Login</a>
+    <a th:href="@{/register}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Register</a>
+  </div>
+
+  <button
+    id="menu-btn"
+    class="md:hidden text-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="nav-links"
+  >
+    ☰
+  </button>
+</nav>
+
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-blue-100 to-teal-100 dark:from-[var(--bg-light)] dark:to-[var(--bg)] py-24 text-center" data-aos="fade-down">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
+      <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300">Everything you need to learn, teach, and grow—powered by peer collaboration.</p>
+    </div>
+  </section>
+
+  <!-- Service Cards -->
+  <section class="py-20 bg-gray-100 dark:bg-[var(--bg)]">
+    <div class="max-w-6xl mx-auto px-4 grid gap-10 md:grid-cols-3 text-center">
+      <!-- 1 -->
+      <div class="bg-white dark:bg-[var(--bg-light)] p-8 rounded shadow hover:-translate-y-1 hover:shadow-xl transition duration-300" data-aos="zoom-in">
+        <div class="text-5xl mb-4">🎯</div>
+        <h3 class="text-xl font-bold mb-2">Skill Barter Sessions</h3>
+        <p class="text-gray-600 dark:text-gray-400">Swap knowledge 1‑on‑1 or in small groups. No cash required—just bring your passion to teach and learn.</p>
+      </div>
+      <!-- 2 -->
+      <div class="bg-white dark:bg-[var(--bg-light)] p-8 rounded shadow hover:-translate-y-1 hover:shadow-xl transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+        <div class="text-5xl mb-4">📅</div>
+        <h3 class="text-xl font-bold mb-2">Smart Scheduling</h3>
+        <p class="text-gray-600 dark:text-gray-400">Integrated calendar tools that find overlapping availabilities and auto‑suggest ideal meeting slots.</p>
+      </div>
+      <!-- 3 -->
+      <div class="bg-white dark:bg-[var(--bg-light)] p-8 rounded shadow hover:-translate-y-1 hover:shadow-xl transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+        <div class="text-5xl mb-4">💬</div>
+        <h3 class="text-xl font-bold mb-2">In‑App Chat & Resources</h3>
+        <p class="text-gray-600 dark:text-gray-400">Share files, code snippets, and whiteboards in real‑time. Every session gets its own chat room.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing / Plans -->
+  <section class="bg-gray-50 dark:bg-[var(--bg-light)] py-20" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-10">Flexible Plans</h3>
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Free -->
+        <div class="bg-white dark:bg-[var(--bg)] p-8 rounded shadow-lg hover:shadow-xl transition" data-aos="flip-left">
+          <h4 class="text-xl font-semibold mb-4">Free Forever</h4>
+          <p class="text-5xl font-bold mb-4">₹0</p>
+          <ul class="text-left space-y-2 text-gray-600 dark:text-gray-400 mb-6">
+            <li>✅ Unlimited skill cards</li>
+            <li>✅ 5 barter sessions / month</li>
+            <li>✅ Community forums</li>
+          </ul>
+          <a href="register.html" class="block bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Get Started</a>
+        </div>
+        <!-- Pro -->
+        <div class="bg-blue-600 text-white p-8 rounded shadow-lg hover:shadow-xl transition" data-aos="flip-left" data-aos-delay="100">
+          <h4 class="text-xl font-semibold mb-4">Pro Mentor</h4>
+          <p class="text-5xl font-bold mb-4">₹499<span class="text-lg font-normal">/mo</span></p>
+          <ul class="text-left space-y-2 mb-6">
+            <li>✅ Unlimited sessions</li>
+            <li>✅ Priority matching</li>
+            <li>✅ Session recording & analytics</li>
+            <li>✅ Direct message support</li>
+          </ul>
+          <a href="register.html" class="block bg-white text-blue-600 font-semibold py-2 rounded hover:bg-gray-100 transition">Start Free Trial</a>
+        </div>
+        <!-- Campus -->
+        <div class="bg-white dark:bg-[var(--bg)] p-8 rounded shadow-lg hover:shadow-xl transition" data-aos="flip-left" data-aos-delay="200">
+          <h4 class="text-xl font-semibold mb-4">Campus Suite</h4>
+          <p class="text-5xl font-bold mb-4">Custom</p>
+          <ul class="text-left space-y-2 text-gray-600 dark:text-gray-400 mb-6">
+            <li>✅ Branded portal</li>
+            <li>✅ Admin analytics</li>
+            <li>✅ LMS integrations</li>
+            <li>✅ Dedicated success team</li>
+          </ul>
+          <a href="contact.html" class="block bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call‑to‑Action -->
+  <section class="py-20 bg-blue-600 text-white text-center" data-aos="zoom-in">
+    <div class="max-w-4xl mx-auto px-4">
+      <h3 class="text-3xl md:text-4xl font-bold mb-4">Ready to exchange skills and level up together?</h3>
+      <a href="register.html" class="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded shadow-lg hover:scale-105 active:scale-95 transition">Join EduBarter Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-[var(--bg-light)] text-center p-6 text-gray-500 dark:text-gray-400 text-sm">
+    &copy; 2025 EduBarter. All rights reserved.
+  </footer>
+
+  <!-- Toggle‑Theme Floating Button -->
+  <button onclick="toggleDark()" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50">
+    Toggle Dark
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Mobile nav toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('hidden');
+    });
+
+    // Scroll‑progress bar + navbar shrink
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+
+      // progress bar
+      const progress = (y / (document.body.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('progress-bar').style.width = progress + '%';
+
+      // shrink navbar
+      if (y > 20) {
+        navbar.classList.add('py-2', 'shadow-md');
+        navbar.classList.remove('py-4');
+      } else {
+        navbar.classList.remove('py-2', 'shadow-md');
+        navbar.classList.add('py-4');
+      }
+    });
+
+    // Dark‑mode logic
+    const html = document.documentElement;
+    const setTheme = mode => {
+      if (mode === 'dark') {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    };
+    const toggleDark = () => setTheme(html.classList.contains('dark') ? 'light' : 'dark');
+
+    // respect previous choice / OS pref
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  </script>
+</body>
+</html>

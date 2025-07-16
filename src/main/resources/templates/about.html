@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | EduBarter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-light: #1e293b;
+      --text: #f1f5f9;
+      --accent: #38bdf8;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background-color: var(--accent);
+      width: 0;
+      z-index: 10000;
+      transition: width 0.25s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-[--bg] text-gray-900 dark:text-[--text] transition-colors duration-500">
+
+  <!-- Scroll Progress Bar -->
+  <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Page scroll progress"></div>
+
+  <!-- Navbar -->
+   <nav
+  id="navbar"
+  class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow sticky top-0 z-50 transition-all duration-300"
+>
+  <a th:href="@{/home}" class="text-xl font-bold text-blue-700 dark:text-blue-400" aria-label="EduBarter home">
+    EduBarter
+  </a>
+
+  <div id="nav-links" class="hidden md:flex gap-4 items-center">
+    <a th:href="@{/home}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Home</a>
+    <a th:href="@{/about}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">About</a>
+    <a th:href="@{/services}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Services</a>
+    <a th:href="@{/contact}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Contact</a>
+    <a th:href="@{/login}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Login</a>
+    <a th:href="@{/register}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Register</a>
+  </div>
+
+  <button
+    id="menu-btn"
+    class="md:hidden text-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="nav-links"
+  >
+    ☰
+  </button>
+</nav>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-blue-100 to-teal-100 dark:from-[--bg-light] dark:to-[--bg] py-20 text-center" data-aos="fade-down">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">About Us</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        We’re building a space where students empower each other through shared learning experiences.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="py-20 bg-white dark:bg-[--bg-light]">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <div data-aos="fade-right">
+        <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+          Our mission is to create an inclusive platform where learners and teachers connect, grow, and thrive.
+          Knowledge should be shared, not gated — and everyone has something valuable to teach.
+        </p>
+      </div>
+      <img th:src="@{/images/student.png}" alt="Students collaborating" class="rounded shadow-lg" data-aos="fade-left">
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="bg-gray-50 dark:bg-[--bg] py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-10">Our Core Values</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-[--bg-light] p-6 rounded shadow hover:shadow-xl transition" data-aos="zoom-in">
+          <div class="text-4xl mb-4">🤝</div>
+          <h4 class="font-bold text-xl mb-2">Collaboration</h4>
+          <p class="text-gray-600 dark:text-gray-300">We grow better together through knowledge exchange and mutual support.</p>
+        </div>
+        <div class="bg-white dark:bg-[--bg-light] p-6 rounded shadow hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="100">
+          <div class="text-4xl mb-4">🚀</div>
+          <h4 class="font-bold text-xl mb-2">Empowerment</h4>
+          <p class="text-gray-600 dark:text-gray-300">We empower students to share skills and explore new passions freely.</p>
+        </div>
+        <div class="bg-white dark:bg-[--bg-light] p-6 rounded shadow hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="200">
+          <div class="text-4xl mb-4">🌱</div>
+          <h4 class="font-bold text-xl mb-2">Growth</h4>
+          <p class="text-gray-600 dark:text-gray-300">Continuous improvement through learning, reflection, and real experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-20 bg-white dark:bg-[--bg-light]">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h3 class="text-3xl font-bold mb-10">Meet the Team</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+      <div class="bg-gray-50 dark:bg-[--bg] p-6 rounded shadow hover:-translate-y-1 transition" data-aos="fade-up">
+        <img th:src="@{/images/2022.jpg}" class="rounded-full mx-auto mb-4" alt="Mani Jain" />
+        <h4 class="font-semibold">Mani Jain</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Backend Engineer</p>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-[--bg] p-6 rounded shadow hover:-translate-y-1 transition" data-aos="fade-up" data-aos-delay="100">
+        <img th:src="@{/images/headshot.webp}" class="rounded-full mx-auto mb-4" alt="Aarohi Verma" />
+        <h4 class="font-semibold">Aarohi Verma</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">Frontend Developer</p>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-[--bg] p-6 rounded shadow hover:-translate-y-1 transition" data-aos="fade-up" data-aos-delay="200">
+        <img th:src="@{/images/male.webp}" class="rounded-full mx-auto mb-4" alt="Raj Malhotra" />
+        <h4 class="font-semibold">Raj Malhotra</h4>
+        <p class="text-gray-600 dark:text-gray-400 text-sm">UI/UX Designer</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- FAQ -->
+  <section class="bg-gray-50 dark:bg-[--bg] py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h3>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-[--bg-light] p-4 rounded shadow">
+          <summary class="font-semibold cursor-pointer">Who can join this platform?</summary>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Anyone interested in learning or teaching a skill — students, professionals, or hobbyists.</p>
+        </details>
+        <details class="bg-white dark:bg-[--bg-light] p-4 rounded shadow">
+          <summary class="font-semibold cursor-pointer">Is it free to use?</summary>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Yes! The core platform is free to use and always will be.</p>
+        </details>
+        <details class="bg-white dark:bg-[--bg-light] p-4 rounded shadow">
+          <summary class="font-semibold cursor-pointer">Can I both teach and learn?</summary>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Absolutely — you can sign up as both a learner and a teacher and manage your skill cards accordingly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center py-8 text-gray-400 text-sm" data-aos="fade-up" data-aos-delay="400">
+    &copy; 2025 EduBarter. All rights reserved.
+  </footer>
+
+  <!-- Theme Toggle -->
+  <button onclick="toggleDark()" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50" aria-label="Toggle dark mode">
+    Toggle Dark
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progress-bar');
+    const html = document.documentElement;
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('hidden');
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !expanded);
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('py-2', 'shadow-md');
+        navbar.classList.remove('py-4');
+      } else {
+        navbar.classList.remove('py-2', 'shadow-md');
+        navbar.classList.add('py-4');
+      }
+
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = `${progress}%`;
+      progressBar.setAttribute('aria-valuenow', progress.toFixed(0));
+    });
+
+    function setTheme(mode) {
+      if (mode === 'dark') {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    function toggleDark() {
+      const isDark = html.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    }
+
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  </script>
+</body>
+</html>

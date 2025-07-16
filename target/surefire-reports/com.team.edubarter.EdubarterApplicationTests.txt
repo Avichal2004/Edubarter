@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.team.edubarter.EdubarterApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.353 s -- in com.team.edubarter.EdubarterApplicationTests
