@@ -10,4 +10,5 @@ public class EdubarterApplication {
 		SpringApplication.run(EdubarterApplication.class, args);
 	}
 
+	
 }

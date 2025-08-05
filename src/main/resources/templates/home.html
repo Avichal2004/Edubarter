@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth light">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EduBarter</title>
-  <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>  <!-- AOS animations -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>>  <!-- AOS animations -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     :root {
@@ -267,15 +271,13 @@
   </footer>
 
   <!-- Toggle Theme Button -->
-  <button
-    onclick="toggleDark()"
-    class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50 focus:outline-none focus:ring-4 focus:ring-blue-500"
-    aria-label="Toggle dark mode"
-  >
-    Toggle Dark
-  </button>
+  <button id="theme" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50" aria-label="Toggle dark mode">
+  <span id="theme_change_button">Dark</span>
+</button>
 
   <!-- Scripts -->
+     <script data-th-src="@{'/js/script.js'}"></script>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
@@ -322,30 +324,7 @@
     animateSlider();
 
     // Dark mode logic with smooth transitions
-    function setTheme(mode) {
-      if (mode === 'dark') {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    }
-
-    function toggleDark() {
-      const isDark = html.classList.contains('dark');
-      setTheme(isDark ? 'light' : 'dark');
-    }
-
-    // Load stored theme or system preference on page load
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      setTheme(storedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    
   </script>
 </body>
 </html>

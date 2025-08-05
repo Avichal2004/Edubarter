@@ -7,6 +7,11 @@
 
   <!-- Tailwind (CDN for quick demo) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
   <!-- AOS scroll animations -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -145,11 +150,13 @@
   </footer>
 
   <!-- Toggle‑Theme Floating Button -->
-  <button onclick="toggleDark()" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50">
-    Toggle Dark
-  </button>
+  <button id="theme" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50" aria-label="Toggle dark mode">
+  <span id="theme_change_button">Dark</span>
+</button>
 
   <!-- Scripts -->
+     <script data-th-src="@{'/js/script.js'}"></script>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
@@ -178,26 +185,7 @@
       }
     });
 
-    // Dark‑mode logic
-    const html = document.documentElement;
-    const setTheme = mode => {
-      if (mode === 'dark') {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    };
-    const toggleDark = () => setTheme(html.classList.contains('dark') ? 'light' : 'dark');
-
-    // respect previous choice / OS pref
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    
   </script>
 </body>
 </html>

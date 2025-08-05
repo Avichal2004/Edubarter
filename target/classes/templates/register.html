@@ -4,53 +4,76 @@
   <meta charset="UTF-8" />
   <title>Register | EduBarter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Register to EduBarter, a peer learning platform where learners and mentors connect and grow." />
+  
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body class="bg-gray-100 dark:bg-[#0f172a] text-gray-900 dark:text-gray-100">
+  <!-- Progress Bar -->
   <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-blue-600 z-[100]"></div>
 
   <!-- Navbar -->
-  <nav
-  id="navbar"
-  class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow sticky top-0 z-50 transition-all duration-300"
->
-  <a th:href="@{/home}" class="text-xl font-bold text-blue-700 dark:text-blue-400" aria-label="EduBarter home">
-    EduBarter
-  </a>
-
-  <div id="nav-links" class="hidden md:flex gap-4 items-center">
-    <a th:href="@{/home}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Home</a>
-    <a th:href="@{/about}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">About</a>
-    <a th:href="@{/services}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Services</a>
-    <a th:href="@{/contact}" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">Contact</a>
-    <a th:href="@{/login}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Login</a>
-    <a th:href="@{/register}" class="ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Register</a>
-  </div>
-
-  <button
-    id="menu-btn"
-    class="md:hidden text-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
-    aria-label="Toggle menu"
-    aria-expanded="false"
-    aria-controls="nav-links"
-  >
-    ☰
-  </button>
-</nav>
+  <nav id="navbar" class="flex justify-between items-center p-4 bg-white dark:bg-gray-900 shadow sticky top-0 z-50 transition-all duration-300">
+    <a th:href="@{/home}" class="text-xl font-bold text-blue-700 dark:text-blue-400">EduBarter</a>
+    <div id="nav-links" class="hidden md:flex gap-4 items-center">
+      <a th:href="@{/home}" class="nav-link">Home</a>
+      <a th:href="@{/about}" class="nav-link">About</a>
+      <a th:href="@{/services}" class="nav-link">Services</a>
+      <a th:href="@{/contact}" class="nav-link">Contact</a>
+      <a th:href="@{/login}" class="btn-primary">Login</a>
+      <a th:href="@{/register}" class="btn-primary">Register</a>
+    </div>
+    <button id="menu-btn" class="md:hidden text-3xl focus:outline-none" aria-label="Toggle menu">☰</button>
+  </nav>
 
   <!-- Register Form -->
   <section class="py-24" data-aos="fade-up">
     <div class="max-w-md mx-auto px-6">
-      <form th:action="@{/register}" th:object="${user}" method="post" class="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
-  <h2 class="text-2xl font-bold text-center text-blue-700 dark:text-blue-400">Register</h2>
-  <input type="text" th:field="*{name}" placeholder="Name" required class="w-full p-2 border rounded dark:bg-gray-700 dark:text-gray-100" />
-  <input type="email" th:field="*{email}" placeholder="Email" required class="w-full p-2 border rounded dark:bg-gray-700 dark:text-gray-100" />
-  <input type="password" th:field="*{password}" placeholder="Password" required class="w-full p-2 border rounded dark:bg-gray-700 dark:text-gray-100" />
-  <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Register</button>
+      <form th:action="@{/register}" th:object="${user}" method="post"
+            class="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4">
 
-  <p class="text-sm text-center text-gray-600 dark:text-gray-400">
-          Already have an account? <a th-href="@{/login}" class="text-blue-600 dark:text-blue-400 underline">Login</a>
+        <h2 class="text-2xl font-bold text-center text-blue-700 dark:text-blue-400">Register</h2>
+
+        <!-- Global error message -->
+        <div th:if="${error}" class="text-red-600 dark:text-red-400 text-sm text-center">
+          <p th:text="${error}"></p>
+        </div>
+
+        <!-- Name Field -->
+        <label for="name" class="sr-only">Name</label>
+        <input id="name" type="text" th:field="*{name}" placeholder="Name" required
+               class="form-input" />
+        <div th:if="${#fields.hasErrors('name')}" class="text-red-500 text-sm">
+          <p th:errors="*{name}"></p>
+        </div>
+
+        <!-- Email Field -->
+        <label for="email" class="sr-only">Email</label>
+        <input id="email" type="email" th:field="*{email}" placeholder="Email" required
+               class="form-input" />
+        <div th:if="${#fields.hasErrors('email')}" class="text-red-500 text-sm">
+          <p th:errors="*{email}"></p>
+        </div>
+
+        <!-- Password Field -->
+        <label for="password" class="sr-only">Password</label>
+        <input id="password" type="password" th:field="*{password}" placeholder="Password" required
+               class="form-input" />
+        <div th:if="${#fields.hasErrors('password')}" class="text-red-500 text-sm">
+          <p th:errors="*{password}"></p>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+          Register
+        </button>
+
+        <p class="text-sm text-center text-gray-600 dark:text-gray-400">
+          Already have an account?
+          <a th:href="@{/login}" class="text-blue-600 dark:text-blue-400 underline">Login</a>
         </p>
       </form>
     </div>
@@ -61,8 +84,10 @@
     &copy; 2025 EduBarter. All rights reserved.
   </footer>
 
-  <!-- Dark Mode Toggle Button -->
-  <button onclick="toggleDark()" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50">Toggle Dark</button>
+  <button id="theme" class="fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition z-50" aria-label="Toggle dark mode">
+  <span id="theme_change_button">Dark</span>
+</button>
+  <script data-th-src="@{'/js/script.js'}"></script>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
@@ -76,28 +101,26 @@
       navbar.classList.toggle('py-2', scrollTop > 20);
     });
 
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    }
-
-    // Handle Register
-    document.getElementById('register-form').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const userData = {
-        name: form.name.value,
-        email: form.email.value,
-        password: form.password.value
-      };
-      console.log('Registered:', userData);
-      alert('Registration successful!');
-      window.location.href = 'dashboard.html';
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      const links = document.getElementById('nav-links');
+      links.classList.toggle('hidden');
     });
+
+    
   </script>
+
+  <script data-th-src="@{'/js/script.js'}"></script>
+
+  <style>
+    .form-input {
+      @apply w-full p-2 border rounded dark:bg-gray-700 dark:text-gray-100;
+    }
+    .btn-primary {
+      @apply ml-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition shadow-lg;
+    }
+    .nav-link {
+      @apply text-gray-700 dark:text-gray-300 hover:text-blue-500 transition;
+    }
+  </style>
 </body>
 </html>
